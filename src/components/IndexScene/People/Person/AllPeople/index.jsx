@@ -1,27 +1,40 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { number, object } from 'prop-types'
 import { Card, Feed } from 'semantic-ui-react'
+import connector from './connector'
 
-const AllPeople = ({ general, contact, job }) =>
-  <Card>
-    <Card.Content>
-      <Feed>
-        <Feed.Event>
-          <Feed.Label image={general.avatar} />
-          <Feed.Content>
-            <Feed.Summary>
-              {`${general.firstName} ${general.lastName}`}
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-      </Feed>
-    </Card.Content>
-  </Card>
+class AllPeople extends React.Component {
+  handleSelectPerson = (index) => {
+    const { actions } = this.props
+    actions.people.find(index)
+  }
 
-AllPeople.propTypes = {
-  general: object.isRequired,
-  contact: object.isRequired,
-  job: object.isRequired,
+  render() {
+    const { index, general, contact } = this.props
+    return (
+      <Card onClick={() => this.handleSelectPerson(index)}>
+        <Card.Content>
+          <Feed>
+            <Feed.Event>
+              <Feed.Label image={general.avatar} />
+              <Feed.Content>
+                <Feed.Summary>
+                  {`${general.firstName} ${general.lastName}`}
+                </Feed.Summary>
+              </Feed.Content>
+            </Feed.Event>
+          </Feed>
+        </Card.Content>
+      </Card>
+    )
+  }
 }
 
-export default AllPeople
+AllPeople.propTypes = {
+  actions: object.isRequired,
+  index: number.isRequired,
+  general: object.isRequired,
+  contact: object.isRequired,
+}
+
+export default connector(AllPeople)

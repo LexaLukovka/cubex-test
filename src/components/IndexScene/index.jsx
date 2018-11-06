@@ -16,10 +16,10 @@ class IndexScene extends React.Component {
   }
 
   render() {
-    const { peopleReducer: { loading, people } } = this.props
+    const { peopleReducer: { loading, filterPeople } } = this.props
     if (loading) return <Loading />
 
-    return <People people={people} />
+    return <People people={filterPeople} />
   }
 }
 
