@@ -1,5 +1,12 @@
 /* eslint-disable no-return-assign */
-import { FIND_PEOPLE, LOAD_PEOPLE_FULFILLED, LOAD_PEOPLE_PENDING, LOAD_PEOPLE_REJECTED, SEARCH } from './action'
+import {
+  CLOSE_CURRENT,
+  FIND_PEOPLE,
+  LOAD_PEOPLE_FULFILLED,
+  LOAD_PEOPLE_PENDING,
+  LOAD_PEOPLE_REJECTED,
+  SEARCH,
+} from './action'
 
 const initialState = {
   loading: false,
@@ -37,9 +44,15 @@ const peopleReducer = (state = initialState, { type, payload }) => {
       state.people.filter((person, index) => index === payload && (currentPeople = person))
       return {
         ...state,
-        currentPeople,
+        currentPeople: state.currentPeople === currentPeople ? null : currentPeople,
       }
     }
+
+    case CLOSE_CURRENT:
+      return {
+        ...state,
+        currentPeople: null,
+      }
 
     case SEARCH: {
       let resultSearch = state.people.filter(person => {
