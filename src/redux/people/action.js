@@ -12,5 +12,5 @@ export const load = () => dispatch => {
   setTimeout(() => dispatch({
     type: LOAD_PEOPLE_FULFILLED,
     payload: people,
-  }), 500)
+  }), 1000)
 }

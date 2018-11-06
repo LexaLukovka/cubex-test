@@ -1,10 +1,10 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as people from '../redux/people/action'
-
+import * as people from '../../redux/people/action'
 
 const initMapStateToProps = store => ({
-  people: store.peopleReducer,
+  loading: store.peopleReducer.loading,
+  people: store.peopleReducer.people,
 })
 
 const initMapDispatchToProps = dispatch => ({
