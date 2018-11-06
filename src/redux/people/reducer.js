@@ -41,7 +41,7 @@ const peopleReducer = (state = initialState, { type, payload }) => {
 
     case FIND_PEOPLE: {
       let currentPeople = {}
-      state.people.filter((person, index) => index === payload && (currentPeople = person))
+      state.people.filter(person => person === payload && (currentPeople = person))
       return {
         ...state,
         currentPeople: state.currentPeople === currentPeople ? null : currentPeople,

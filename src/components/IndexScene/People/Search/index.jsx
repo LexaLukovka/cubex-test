@@ -6,10 +6,10 @@ import { search } from '../../../../redux/people/action'
 
 const styles = {
   searchInput: {
-    padding: '15px',
+    padding: 15,
   },
   searchIcon: {
-    right: '15px',
+    right: 15,
     border: 0,
   },
 }
