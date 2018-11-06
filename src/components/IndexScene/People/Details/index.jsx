@@ -1,12 +1,15 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { connect } from 'react-redux'
+import { func, object } from 'prop-types'
 import { Card, Icon, Image } from 'semantic-ui-react'
-import connector from './connector'
+import { closeCurrent } from '../../../../redux/people/action'
 
 const styles = {
   root: {
-    marginLeft: 100,
+    width: '100%',
     minWidth: 300,
+    maxWidth: 500,
+    marginTop: 10,
   },
   image: {
     height: '100%',
@@ -21,12 +24,12 @@ const styles = {
 
 class Details extends React.Component {
   handleClose = () => {
-    const { actions } = this.props
-    actions.people.closeCurrent()
+    const { dispatch } = this.props
+    dispatch(closeCurrent())
   }
 
   render() {
-    const { current: { general, job, contact } } = this.props
+    const { currentPeople: { general, job, contact } } = this.props
     return (
       <Card style={styles.root}>
         <Image src={general.avatar} style={styles.image} />
@@ -37,8 +40,8 @@ class Details extends React.Component {
           <Card.Meta>{contact.email}</Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <Card.Description>{job.company}</Card.Description>
           <Card.Description>{job.title}</Card.Description>
+          <Card.Description>{job.company}</Card.Description>
         </Card.Content>
       </Card>
     )
@@ -46,8 +49,8 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
-  actions: object.isRequired,
-  current: object.isRequired,
+  dispatch: func.isRequired,
+  currentPeople: object.isRequired,
 }
 
-export default connector(Details)
+export default connect()(Details)
