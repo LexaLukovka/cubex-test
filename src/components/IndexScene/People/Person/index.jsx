@@ -7,7 +7,6 @@ const Person = ({ person, index }) =>
     <AllPeople
       index={index}
       general={person.general}
-      contact={person.contact}
     />
   </div>
 

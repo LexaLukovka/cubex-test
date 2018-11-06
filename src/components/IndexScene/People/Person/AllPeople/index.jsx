@@ -10,7 +10,7 @@ class AllPeople extends React.Component {
   }
 
   render() {
-    const { index, general, contact } = this.props
+    const { index, general } = this.props
     return (
       <Card onClick={() => this.handleSelectPerson(index)}>
         <Card.Content>
@@ -34,7 +34,6 @@ AllPeople.propTypes = {
   actions: object.isRequired,
   index: number.isRequired,
   general: object.isRequired,
-  contact: object.isRequired,
 }
 
 export default connector(AllPeople)
