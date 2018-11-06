@@ -24,9 +24,9 @@ export const search = (value) => ({
   payload: value,
 })
 
-export const find = (index) => ({
+export const find = (person) => ({
   type: FIND_PEOPLE,
-  payload: index,
+  payload: person,
 })
 
 export const closeCurrent = () => ({

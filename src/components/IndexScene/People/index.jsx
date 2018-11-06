@@ -8,9 +8,9 @@ const People = ({ people, currentPeople }) =>
   <React.Fragment>
     <Search />
     <div style={{ display: 'flex' }}>
-      <div>
+      <div className="person">
         {people && people.map((person, i) =>
-          <Person key={i} index={i} person={person} />)
+          <Person key={i} person={person} />)
         }
       </div>
       <div>
