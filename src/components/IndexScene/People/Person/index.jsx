@@ -1,13 +1,14 @@
 /* eslint-disable prefer-destructuring */
 import React from 'react'
-import { object } from 'prop-types'
+import { connect } from 'react-redux'
+import { func, object } from 'prop-types'
 import { Card, Feed } from 'semantic-ui-react'
-import connector from './connector'
+import { find } from '../../../../redux/people/action'
 
 class Persone extends React.Component {
   handleSelectPerson = (person) => {
-    const { actions } = this.props
-    actions.people.find(person)
+    const { dispatch } = this.props
+    dispatch(find(person))
   }
 
   render() {
@@ -33,8 +34,8 @@ class Persone extends React.Component {
 }
 
 Persone.propTypes = {
-  actions: object.isRequired,
+  dispatch: func.isRequired,
   person: object.isRequired,
 }
 
-export default connector(Persone)
+export default connect()(Persone)
