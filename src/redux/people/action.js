@@ -7,6 +7,7 @@ export const LOAD_PEOPLE_FULFILLED = 'LOAD_PEOPLE_FULFILLED'
 
 export const SEARCH = 'SEARCH'
 export const FIND_PEOPLE = 'FIND_PEOPLE'
+export const CLOSE_CURRENT = 'CLOSE_CURRENT'
 
 export const load = () => dispatch => {
   dispatch({
@@ -26,4 +27,8 @@ export const search = (value) => ({
 export const find = (index) => ({
   type: FIND_PEOPLE,
   payload: index,
+})
+
+export const closeCurrent = () => ({
+  type: CLOSE_CURRENT,
 })
