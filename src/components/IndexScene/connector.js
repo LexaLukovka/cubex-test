@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import * as people from '../../redux/people/action'
 
 const initMapStateToProps = store => ({
-  loading: store.peopleReducer.loading,
-  people: store.peopleReducer.people,
+  peopleReducer: store.peopleReducer,
 })
 
 const initMapDispatchToProps = dispatch => ({

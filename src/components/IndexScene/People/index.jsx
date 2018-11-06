@@ -1,13 +1,16 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { array } from 'prop-types'
+import Person from './Person'
 
-const index = ({ person }) =>
-  <div>
-    {console.log(person)}
-  </div>
+const index = ({ people }) =>
+  <React.Fragment>
+    {people && people.map((person, i) =>
+      <Person key={i} person={person} />)
+    }
+  </React.Fragment>
 
 index.propTypes = {
-  person: object.isRequired,
+  people: array.isRequired,
 }
 
 export default index
