@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Button, CardContent, Grid } from 'semantic-ui-react'
 
-import FormikText from '../../formik/FormikText'
-import FormikPhone from '../../formik/FormikPhone'
+import FormikText from './formik/FormikText'
+import FormikPhone from './formik/FormikPhone'
 import formik from './formik'
 import { Field, Form } from 'formik'
 
-import connector from '../../connector'
+import connector from '../connector'
 
 const styles = {
   button: {
@@ -20,21 +20,26 @@ const styles = {
   },
 }
 
-const RegisterForm = () =>
+const CreateForm = () =>
   <Form>
     <CardContent>
       <Field
-        label="Имя и фамилия"
+        label="Имя"
+        name="firstName"
         component={FormikText}
-        name="name"
-        type="name"
-        placeholder="Вася Пупкин"
+        placeholder="Вася"
+      />
+      <Field
+        label="Фамилия"
+        name="lastName"
+        component={FormikText}
+        placeholder="Пупкин"
       />
       <Field
         label="Email"
-        component={FormikText}
         name="email"
         type="email"
+        component={FormikText}
         placeholder="email@example.com"
       />
       <Field
@@ -44,21 +49,23 @@ const RegisterForm = () =>
         placeholder="*******"
       />
       <Field
-        label="Пароль"
-        name="password"
-        type="password"
+        label="Специальность"
+        name="title"
         component={FormikText}
-        placeholder="*******"
+        placeholder="Программист"
+      />
+      <Field
+        label="Компания"
+        name="company"
+        component={FormikText}
+        placeholder="Cubex"
       />
     </CardContent>
     <Grid centered>
       <Button style={styles.button} type="submit" secondary>
-        Зарегистрироваться
+        Сохранить
       </Button>
     </Grid>
-    <Link to="/auth/login">
-      <div style={styles.link}>Уже есть аккаунт? | Войти</div>
-    </Link>
   </Form>
 
-export default connector(withRouter(formik(RegisterForm)))
+export default connector(withRouter(formik(CreateForm)))

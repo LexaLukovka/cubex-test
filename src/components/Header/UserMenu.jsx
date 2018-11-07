@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,react/sort-comp */
 import React from 'react'
 import { object } from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Button, Dropdown, Menu } from 'semantic-ui-react'
 
 import connector from './connector'
@@ -23,12 +23,16 @@ const styles = {
   flex: {
     display: 'flex',
   },
+  button: {
+    height: 38,
+  },
 }
 
 class UserMenu extends React.Component {
   logout = () => {
-    const { actions } = this.props
+    const { actions, history } = this.props
     actions.auth.logout()
+    history.push('/')
   }
 
   render() {
@@ -40,8 +44,8 @@ class UserMenu extends React.Component {
         <div>
           {!auth.user &&
           <div style={styles.flex}>
-            <Link to="/auth/login"><Button secondary>Войти</Button></Link>
-            <Link to="/auth/register"><Button secondary>Зарегистрироваться</Button></Link>
+            <Link to="/auth/login"><Button style={styles.button} secondary>Войти</Button></Link>
+            <Link to="/auth/register"><Button style={styles.button} secondary>Зарегистрироваться</Button></Link>
           </div>
           }
         </div>
@@ -64,6 +68,7 @@ class UserMenu extends React.Component {
 UserMenu.propTypes = {
   auth: object.isRequired,
   actions: object.isRequired,
+  history: object.isRequired,
 }
 
-export default connector(UserMenu)
+export default connector(withRouter(UserMenu))

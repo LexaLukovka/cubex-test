@@ -5,7 +5,7 @@ import { Card } from 'semantic-ui-react'
 const styles = {
   card: {
     padding: 30,
-    minWidth: 500,
+    width: '100%',
   },
   title: {
     textAlign: 'center',

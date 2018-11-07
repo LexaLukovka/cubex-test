@@ -1,4 +1,3 @@
-/* eslint-disable react/sort-comp,padded-blocks,no-console */
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { Button, CardContent, Grid } from 'semantic-ui-react'

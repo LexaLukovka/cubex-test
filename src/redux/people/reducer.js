@@ -1,9 +1,9 @@
 /* eslint-disable no-return-assign,no-underscore-dangle,no-nested-ternary */
 import {
   CLOSE_CURRENT,
-  FIRST_CREATE_FULFILLED,
-  FIRST_CREATE_PENDING,
-  FIRST_CREATE_REJECTED,
+  CREATE_PERSON_FULFILLED,
+  CREATE_PERSON_PENDING,
+  CREATE_PERSON_REJECTED,
   LOAD_PEOPLE_FULFILLED,
   LOAD_PEOPLE_PENDING,
   LOAD_PEOPLE_REJECTED,
@@ -24,15 +24,15 @@ const initialState = {
 const peopleReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_PEOPLE_PENDING:
-    case FIRST_CREATE_PENDING:
+    case CREATE_PERSON_PENDING:
       return {
         ...state,
         loading: true,
       }
 
     case LOAD_PEOPLE_REJECTED:
-    case FIRST_CREATE_REJECTED:
     case PEOPLE_FIND_REJECTED:
+    case CREATE_PERSON_REJECTED:
       return {
         ...state,
         loading: false,
@@ -47,7 +47,7 @@ const peopleReducer = (state = initialState, { type, payload }) => {
         filterPeople: payload.people,
       }
 
-    case FIRST_CREATE_FULFILLED:
+    case CREATE_PERSON_FULFILLED:
       return {
         ...state,
         loading: false,
@@ -71,9 +71,10 @@ const peopleReducer = (state = initialState, { type, payload }) => {
       }
 
     case SEARCH: {
+      const search = payload.toLowerCase()
       let resultSearch = state.people.filter(person => {
         const allInfo = `${Object.values(person).join(' ')}`
-        return allInfo.toLowerCase().includes(payload)
+        return allInfo.toLowerCase().includes(search)
       })
 
       if (payload === '') resultSearch = [...state.people]
