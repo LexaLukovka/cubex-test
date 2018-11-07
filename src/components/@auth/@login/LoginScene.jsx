@@ -5,7 +5,7 @@ import LoginForm from './LoginForm'
 const styles = {
   card: {
     padding: 30,
-    minWidth: 500,
+    width: '100%',
   },
   title: {
     textAlign: 'center',
