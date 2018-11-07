@@ -14,6 +14,7 @@ const styles = {
   menu: {
     height: 38,
     marginTop: 0,
+    padding: 0,
   },
   menuItem: {
     '&:focus': {
@@ -22,6 +23,7 @@ const styles = {
   },
   flex: {
     display: 'flex',
+    justifyContent: 'space-around',
   },
   button: {
     height: 38,
@@ -51,8 +53,8 @@ class UserMenu extends React.Component {
         </div>
 
         {auth.user &&
-        <Menu style={styles.menu}>
-          <Dropdown item text={auth.user.name}>
+        <Menu className="fullWidth" style={styles.menu}>
+          <Dropdown className="fullWidth" item text={auth.user.name}>
             <Dropdown.Menu style={styles.menuItem} onClick={this.handleClose}>
               <Dropdown.Header onClick={this.logout}>Выйти</Dropdown.Header>
             </Dropdown.Menu>

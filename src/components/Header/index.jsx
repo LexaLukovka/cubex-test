@@ -7,10 +7,6 @@ import UserMenu from './UserMenu'
 import connector from './connector'
 
 const styles = {
-  flex: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
   link: {
     padding: 15,
   },
@@ -20,13 +16,13 @@ const styles = {
 }
 
 const Header = ({ auth }) =>
-  <div style={styles.flex}>
+  <div className="flex">
     <Search />
-    <div style={styles.flex}>
+    <div className="flex">
       {auth.user &&
       <div style={styles.link}>
         <Link to="/create">
-          <Button style={styles.button} secondary>Создать контакт</Button>
+          <Button className="fullWidth" style={styles.button} secondary>Создать контакт</Button>
         </Link>
       </div>
       }

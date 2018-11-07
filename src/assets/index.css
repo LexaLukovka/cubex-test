@@ -22,6 +22,15 @@ code {
     monospace;
 }
 
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    width: calc(100% - 350px);
+}
+
 .person, .personMobile {
     height: calc(100vh - 78px);
     overflow-y: scroll;
@@ -46,5 +55,17 @@ code {
     .personMobile {
         display: none;
         margin: 20px;
+    }
+    .flex {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .fullWidth {
+        width: 100%;
     }
 }
