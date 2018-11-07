@@ -1,5 +1,6 @@
 import people from '../../people.json'
 import People from '../../services/api/People'
+import FirstPeople from '../../services/api/FirstPeople'
 
 export const FIRST_CREATE = 'FIRST_CREATE'
 export const FIRST_CREATE_PENDING = 'FIRST_CREATE_PENDING'
@@ -17,7 +18,7 @@ export const CLOSE_CURRENT = 'CLOSE_CURRENT'
 
 export const firstCreate = () => ({
   type: FIRST_CREATE,
-  payload: People.create({ people }),
+  payload: FirstPeople.create({ people }),
 })
 
 export const load = () => ({
