@@ -8,7 +8,7 @@ const styles = {
   root: {
     width: '100%',
     minWidth: 300,
-    maxWidth: 500,
+    maxWidth: 450,
     marginTop: 10,
   },
   image: {
