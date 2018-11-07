@@ -1,5 +1,4 @@
 import React from 'react'
-import { object } from 'prop-types'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import RegisterScene from './@register/RegisterScene'
 import LoginScene from './@login/LoginScene'

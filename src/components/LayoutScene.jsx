@@ -9,10 +9,10 @@ import CreateScene from './@create/CreateScene'
 import { firstCreate } from '../redux/people/action'
 
 class LayoutScene extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch } = this.props
-    console.log(1)
-    dispatch(firstCreate())
+    const people = JSON.parse(localStorage.getItem('people'))
+    if (!people) dispatch(firstCreate())
   }
 
   render() {

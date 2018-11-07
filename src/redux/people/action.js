@@ -12,14 +12,23 @@ export const LOAD_PEOPLE_PENDING = 'LOAD_PEOPLE_PENDING'
 export const LOAD_PEOPLE_REJECTED = 'LOAD_PEOPLE_REJECTED'
 export const LOAD_PEOPLE_FULFILLED = 'LOAD_PEOPLE_FULFILLED'
 
+export const PEOPLE_FIND = 'PEOPLE_FIND'
+export const PEOPLE_FIND_PENDING = 'PEOPLE_FIND_PENDING'
+export const PEOPLE_FIND_REJECTED = 'PEOPLE_FIND_REJECTED'
+export const PEOPLE_FIND_FULFILLED = 'PEOPLE_FIND_FULFILLED'
+
+
 export const SEARCH = 'SEARCH'
-export const FIND_PEOPLE = 'FIND_PEOPLE'
 export const CLOSE_CURRENT = 'CLOSE_CURRENT'
 
-export const firstCreate = () => ({
-  type: FIRST_CREATE,
-  payload: FirstPeople.create({ people }),
-})
+export const firstCreate = () => dispatch => {
+  dispatch({
+    type: FIRST_CREATE,
+    payload: FirstPeople.create({ people }),
+  })
+
+  localStorage.setItem('people', JSON.stringify(people))
+}
 
 export const load = () => ({
   type: LOAD_PEOPLE,
@@ -31,9 +40,9 @@ export const search = (value) => ({
   payload: value,
 })
 
-export const find = (person) => ({
-  type: FIND_PEOPLE,
-  payload: person,
+export const find = (id) => ({
+  type: PEOPLE_FIND,
+  payload: People.find(id),
 })
 
 export const closeCurrent = () => ({

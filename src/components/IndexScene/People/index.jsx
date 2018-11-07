@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react'
 import { array, object } from 'prop-types'
 import { Grid } from 'semantic-ui-react'
@@ -19,7 +20,7 @@ const People = ({ people, currentPeople }) =>
     <div style={styles.flex}>
       <div className={currentPeople ? 'personMobile' : 'person'}>
         {people && people.map((person, i) =>
-          <Person key={i} person={person} currentPeople={currentPeople} />)
+          <Person key={i} person={person} currentPeopleId={currentPeople && currentPeople._id} />)
         }
       </div>
       <Grid centered style={styles.detail}>
