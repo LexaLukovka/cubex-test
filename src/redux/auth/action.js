@@ -12,24 +12,19 @@ export const LOGIN_USER_REJECTED = 'LOGIN_USER_REJECTED'
 
 export const LOGOUT_USER = 'LOGIN_USER'
 
-export const register = (form) => async dispatch => {
-  await dispatch({
-    type: REGISTER_USER,
-    payload: Auth.register(form),
-  })
-}
+export const register = (form) => ({
+  type: REGISTER_USER,
+  payload: Auth.register(form),
+})
 
-export const login = (form) => async dispatch => {
-  await dispatch({
-    type: LOGIN_USER,
-    payload: Auth.login(form),
-  })
-
-}
+export const login = (form) => ({
+  type: LOGIN_USER,
+  payload: Auth.login(form),
+})
 
 export const logout = () => dispatch => {
   dispatch({
     type: LOGOUT_USER,
   })
-
+  localStorage.setItem('user', JSON.stringify(null))
 }

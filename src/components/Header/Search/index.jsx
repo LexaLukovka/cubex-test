@@ -37,7 +37,7 @@ class Search extends React.Component {
     const { searchValue } = this.state
 
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ width: 'calc(100% - 400px)' }}>
         <Input icon placeholder="Search..." fluid style={styles.searchInput}>
           <input onChange={this.handleChange} value={searchValue} />
           <Icon

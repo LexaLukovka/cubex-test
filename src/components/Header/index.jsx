@@ -1,13 +1,41 @@
 import React from 'react'
+import { object } from 'prop-types'
+import { Link } from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
 import Search from './Search'
 import UserMenu from './UserMenu'
+import connector from './connector'
 
-const Header = () =>
-  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+const styles = {
+  flex: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  link: {
+    padding: 15,
+  },
+  button: {
+    minHeight: 38,
+  },
+}
+
+const Header = ({ auth }) =>
+  <div style={styles.flex}>
     <Search />
-    <UserMenu />
+    <div style={styles.flex}>
+      {auth.user &&
+      <div style={styles.link}>
+        <Link to="/create">
+          <Button style={styles.button} secondary>Создать контакт</Button>
+        </Link>
+      </div>
+      }
+      <UserMenu />
+    </div>
   </div>
 
-Header.propTypes = {}
+Header.propTypes = {
+  auth: object.isRequired,
+}
 
-export default Header
+export default connector(Header)
