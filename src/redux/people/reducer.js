@@ -72,8 +72,7 @@ const peopleReducer = (state = initialState, { type, payload }) => {
 
     case SEARCH: {
       let resultSearch = state.people.filter(person => {
-        const allInfo = `${Object.values(person.general).join(' ')} ${Object.values(person.job).join(' ')}
-         ${Object.values(person.contact).join(' ')}`
+        const allInfo = `${Object.values(person).join(' ')}`
         return allInfo.toLowerCase().includes(payload)
       })
 

@@ -1,12 +1,25 @@
 /* eslint-disable react/sort-comp,padded-blocks,no-console */
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Button, CardContent } from 'semantic-ui-react'
+import { Button, CardContent, Grid } from 'semantic-ui-react'
+
 import FormikText from '../../formik/FormikText'
 import FormikPhone from '../../formik/FormikPhone'
 import formik from './formik'
 import { Field, Form } from 'formik'
+
 import connector from '../../connector'
+
+const styles = {
+  button: {
+    margin: 30,
+    width: '100%',
+  },
+  link: {
+    marginTop: 10,
+    textAlign: 'center',
+  },
+}
 
 const RegisterForm = () =>
   <Form>
@@ -39,11 +52,13 @@ const RegisterForm = () =>
         placeholder="*******"
       />
     </CardContent>
-    <Button type="submit">
-      Зарегистрироваться
-    </Button>
+    <Grid centered>
+      <Button style={styles.button} type="submit" secondary>
+        Зарегистрироваться
+      </Button>
+    </Grid>
     <Link to="/auth/login">
-      <div style={{ textAlign: 'center' }}>Уже есть аккаунт? Войти</div>
+      <div style={styles.link}>Уже есть аккаунт? | Войти</div>
     </Link>
   </Form>
 

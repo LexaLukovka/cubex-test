@@ -3,8 +3,13 @@ import { Card } from 'semantic-ui-react'
 import LoginForm from './LoginForm'
 
 const styles = {
+  card: {
+    padding: 30,
+    minWidth: 500,
+  },
   title: {
     textAlign: 'center',
+    marginBottom: 10,
   },
 }
 
@@ -15,8 +20,8 @@ class LoginScene extends Component {
 
   render() {
     return (
-      <Card>
-        <div style={styles.title}>ВОЙТИ</div>
+      <Card style={styles.card}>
+        <div style={styles.title}><h4>ВОЙТИ</h4></div>
         <LoginForm />
       </Card>
     )

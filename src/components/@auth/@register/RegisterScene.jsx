@@ -3,8 +3,13 @@ import RegisterForm from './RegisterForm'
 import { Card } from 'semantic-ui-react'
 
 const styles = {
+  card: {
+    padding: 30,
+    minWidth: 500,
+  },
   title: {
     textAlign: 'center',
+    marginBottom: 10,
   },
 }
 
@@ -15,8 +20,8 @@ class RegisterScene extends Component {
 
   render() {
     return (
-      <Card>
-        <div style={styles.title}>ЗАРЕГИСТРИРОВАТЬСЯ</div>
+      <Card style={styles.card}>
+        <div style={styles.title}><h4>ЗАРЕГИСТРИРОВАТЬСЯ</h4></div>
         <RegisterForm />
       </Card>
     )
