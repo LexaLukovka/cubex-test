@@ -15,6 +15,12 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.head {
+    font-size: 0.9285714285714286rem;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.5em;
+}
 
 .person, .personMobile {
     height: calc(100vh - 78px);

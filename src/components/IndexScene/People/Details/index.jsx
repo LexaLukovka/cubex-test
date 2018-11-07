@@ -29,19 +29,19 @@ class Details extends React.Component {
   }
 
   render() {
-    const { currentPeople: { general, job, contact } } = this.props
+    const { currentPeople } = this.props
     return (
       <Card style={styles.root}>
-        <Image src={general.avatar} style={styles.image} />
+        {currentPeople.avatar && <Image src={currentPeople.avatar} style={styles.image} />}
         <Icon name="close" size="large" style={styles.icon} onClick={this.handleClose} />
         <Card.Content>
-          <Card.Header>{`${general.firstName} ${general.lastName}`}</Card.Header>
-          <Card.Meta>{contact.phone}</Card.Meta>
-          <Card.Meta>{contact.email}</Card.Meta>
+          <Card.Header>{`${currentPeople.firstName} ${currentPeople.lastName}`}</Card.Header>
+          <Card.Meta>{currentPeople.phone}</Card.Meta>
+          <Card.Meta>{currentPeople.email}</Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <Card.Description>{job.title}</Card.Description>
-          <Card.Description>{job.company}</Card.Description>
+          <Card.Description>{currentPeople.title}</Card.Description>
+          <Card.Description>{currentPeople.company}</Card.Description>
         </Card.Content>
       </Card>
     )

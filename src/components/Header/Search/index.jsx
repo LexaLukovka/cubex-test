@@ -2,7 +2,7 @@ import React from 'react'
 import { func } from 'prop-types'
 import { connect } from 'react-redux'
 import { Icon, Input } from 'semantic-ui-react'
-import { search } from '../../../../redux/people/action'
+import { search } from '../../../redux/people/action'
 
 const styles = {
   searchInput: {
@@ -37,7 +37,7 @@ class Search extends React.Component {
     const { searchValue } = this.state
 
     return (
-      <div className="search">
+      <div style={{ width: '100%' }}>
         <Input icon placeholder="Search..." fluid style={styles.searchInput}>
           <input onChange={this.handleChange} value={searchValue} />
           <Icon

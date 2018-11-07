@@ -5,11 +5,6 @@ import Loading from '../Loading'
 import connector from './connector'
 
 class IndexScene extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   componentDidMount() {
     const { actions } = this.props
     actions.people.load()
