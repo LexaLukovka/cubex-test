@@ -15,7 +15,7 @@ const FormikPhone = ({ field, form, ...props }) =>
       customInput={Input}
       error={(form.submitCount > 0) && !!form.errors[field.name]}
     />
-    {form.submitCount > 0 && <Message error content={form.errors[field.name]} />}
+    {(form.submitCount > 0) && form.errors[field.name] && <Message error content={form.errors[field.name]} />}
   </React.Fragment>
 
 FormikPhone.propTypes = {
