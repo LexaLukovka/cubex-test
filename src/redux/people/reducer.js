@@ -1,16 +1,21 @@
-/* eslint-disable no-return-assign */
+/* eslint-disable no-return-assign,no-underscore-dangle,no-nested-ternary */
 import {
   CLOSE_CURRENT,
-  FIND_PEOPLE,
+  FIRST_CREATE_FULFILLED,
+  FIRST_CREATE_PENDING,
+  FIRST_CREATE_REJECTED,
   LOAD_PEOPLE_FULFILLED,
   LOAD_PEOPLE_PENDING,
   LOAD_PEOPLE_REJECTED,
+  PEOPLE_FIND_FULFILLED,
+  PEOPLE_FIND_REJECTED,
   SEARCH,
 } from './action'
 
 const initialState = {
   loading: false,
   error: null,
+  massages: null,
   people: [],
   filterPeople: [],
   currentPeople: null,
@@ -19,12 +24,15 @@ const initialState = {
 const peopleReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_PEOPLE_PENDING:
+    case FIRST_CREATE_PENDING:
       return {
         ...state,
         loading: true,
       }
 
     case LOAD_PEOPLE_REJECTED:
+    case FIRST_CREATE_REJECTED:
+    case PEOPLE_FIND_REJECTED:
       return {
         ...state,
         loading: false,
@@ -35,16 +43,24 @@ const peopleReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        people: payload,
-        filterPeople: payload,
+        people: payload.people,
+        filterPeople: payload.people,
       }
 
-    case FIND_PEOPLE: {
-      let currentPeople = {}
-      state.people.filter(person => person === payload && (currentPeople = person))
+    case FIRST_CREATE_FULFILLED:
       return {
         ...state,
-        currentPeople: state.currentPeople === currentPeople ? null : currentPeople,
+        loading: false,
+        massages: payload,
+      }
+
+    case PEOPLE_FIND_FULFILLED: {
+      const { currentPeople } = state
+      const { person } = payload
+      return {
+        ...state,
+        loading: false,
+        currentPeople: currentPeople ? (person._id === currentPeople._id ? null : person) : person,
       }
     }
 

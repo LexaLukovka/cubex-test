@@ -1,7 +1,7 @@
-/* eslint-disable prefer-destructuring */
+/* eslint-disable prefer-destructuring,no-underscore-dangle */
 import React from 'react'
 import { connect } from 'react-redux'
-import { func, object } from 'prop-types'
+import { func, object, string } from 'prop-types'
 import { Card, Feed } from 'semantic-ui-react'
 import { find } from '../../../../redux/people/action'
 
@@ -16,27 +16,26 @@ const styles = {
 }
 
 class Persone extends React.Component {
-  handleSelectPerson = (person) => {
+  handleSelectPerson = (id) => {
     const { dispatch } = this.props
-    dispatch(find(person))
+    dispatch(find(id))
   }
 
   render() {
-    const { person, currentPeople } = this.props
-    const general = person.general
+    const { person, currentPeopleId } = this.props
 
     return (
       <Card
-        style={person === currentPeople ? styles.chooseRoot : styles.root}
-        onClick={() => this.handleSelectPerson(person)}
+        style={person._id === currentPeopleId ? styles.chooseRoot : styles.root}
+        onClick={() => this.handleSelectPerson(person._id)}
       >
         <Card.Content>
           <Feed>
             <Feed.Event>
-              <Feed.Label image={general.avatar} />
+              <Feed.Label image={person.avatar} />
               <Feed.Content>
                 <Feed.Summary>
-                  {`${general.firstName} ${general.lastName}`}
+                  {`${person.firstName} ${person.lastName}`}
                 </Feed.Summary>
               </Feed.Content>
             </Feed.Event>
@@ -50,11 +49,11 @@ class Persone extends React.Component {
 Persone.propTypes = {
   dispatch: func.isRequired,
   person: object.isRequired,
-  currentPeople: object,
+  currentPeopleId: string,
 }
 
 Persone.defaultProps = {
-  currentPeople: null,
+  currentPeopleId: null,
 }
 
 export default connect()(Persone)
