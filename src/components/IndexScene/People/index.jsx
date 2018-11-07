@@ -1,7 +1,6 @@
 import React from 'react'
 import { array, object } from 'prop-types'
 import { Grid } from 'semantic-ui-react'
-import Search from './Search'
 import Person from './Person'
 import Details from './Details'
 
@@ -17,11 +16,10 @@ const styles = {
 
 const People = ({ people, currentPeople }) =>
   <React.Fragment>
-    <Search />
     <div style={styles.flex}>
       <div className={currentPeople ? 'personMobile' : 'person'}>
         {people && people.map((person, i) =>
-          <Person key={i} person={person} />)
+          <Person key={i} person={person} currentPeople={currentPeople} />)
         }
       </div>
       <Grid centered style={styles.detail}>

@@ -5,6 +5,16 @@ import { func, object } from 'prop-types'
 import { Card, Feed } from 'semantic-ui-react'
 import { find } from '../../../../redux/people/action'
 
+const styles = {
+  root: {
+    margin: 0,
+  },
+  chooseRoot: {
+    margin: 0,
+    background: '#f0f0f0',
+  },
+}
+
 class Persone extends React.Component {
   handleSelectPerson = (person) => {
     const { dispatch } = this.props
@@ -12,10 +22,14 @@ class Persone extends React.Component {
   }
 
   render() {
-    const { person } = this.props
+    const { person, currentPeople } = this.props
     const general = person.general
+
     return (
-      <Card style={{ margin: 0 }} onClick={() => this.handleSelectPerson(person)}>
+      <Card
+        style={person === currentPeople ? styles.chooseRoot : styles.root}
+        onClick={() => this.handleSelectPerson(person)}
+      >
         <Card.Content>
           <Feed>
             <Feed.Event>
@@ -36,6 +50,11 @@ class Persone extends React.Component {
 Persone.propTypes = {
   dispatch: func.isRequired,
   person: object.isRequired,
+  currentPeople: object,
+}
+
+Persone.defaultProps = {
+  currentPeople: null,
 }
 
 export default connect()(Persone)

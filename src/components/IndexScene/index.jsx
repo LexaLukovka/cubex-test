@@ -12,7 +12,7 @@ class IndexScene extends React.Component {
 
   componentDidMount() {
     const { actions } = this.props
-    actions.people.load()
+    // actions.people.load()
   }
 
   render() {

@@ -2,7 +2,7 @@ import React from 'react'
 import { func } from 'prop-types'
 import { connect } from 'react-redux'
 import { Icon, Input } from 'semantic-ui-react'
-import { search } from '../../../../redux/people/action'
+import { search } from '../../../redux/people/action'
 
 const styles = {
   searchInput: {
