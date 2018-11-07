@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { func, object, string } from 'prop-types'
 import { Card, Feed } from 'semantic-ui-react'
 import { find } from '../../../../redux/people/action'
+import initialsFromUsername from '../../../../utils/initialsFromUsername'
 
 const styles = {
   root: {
@@ -12,6 +13,15 @@ const styles = {
   chooseRoot: {
     margin: 0,
     background: '#f0f0f0',
+  },
+  name: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    height: 35,
+    borderRadius: '50%',
+    background: 'silver',
+    fontWeight: 500,
+    paddingTop: 7,
   },
 }
 
@@ -23,6 +33,7 @@ class Persone extends React.Component {
 
   render() {
     const { person, currentPeopleId } = this.props
+    const name = `${person.firstName} ${person.lastName}`
 
     return (
       <Card
@@ -32,7 +43,11 @@ class Persone extends React.Component {
         <Card.Content>
           <Feed>
             <Feed.Event>
-              <Feed.Label image={person.avatar} />
+              {person.avatar ?
+                <Feed.Label image={person.avatar} />
+                :
+                <Feed.Label style={styles.name}>{initialsFromUsername(name)}</Feed.Label>
+              }
               <Feed.Content>
                 <Feed.Summary>
                   {`${person.firstName} ${person.lastName}`}
