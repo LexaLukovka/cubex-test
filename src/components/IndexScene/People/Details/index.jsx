@@ -5,6 +5,7 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 import Carousel from '../../../Carousel'
 import DeleteIcon from 'mdi-react/DeleteIcon'
 import connector from '../connector'
+import { isEmpty } from 'lodash'
 
 const styles = {
   root: {
@@ -50,7 +51,7 @@ class Details extends React.Component {
 
     return (
       <Card style={styles.root}>
-        {currentPeople.avatar ?
+        {!isEmpty(currentPeople.avatar) ?
           <Carousel pictures={currentPeople.avatar} />
           :
           <Image src={pathBack} style={styles.image} />

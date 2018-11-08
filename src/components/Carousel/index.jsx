@@ -33,7 +33,7 @@ class Carousel extends React.Component {
     return (
       <div style={styles.root}>
         <Slider {...this.settings}>
-          {pictures.map(picture_url =>
+          {pictures && pictures.map(picture_url =>
             (!picture_url.indexOf('/uploads') ?
               <Image key={picture_url} src={`${pathBack}${picture_url}`} style={styles.picture} />
               :
