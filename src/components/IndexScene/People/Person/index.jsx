@@ -1,10 +1,9 @@
-/* eslint-disable prefer-destructuring,no-underscore-dangle */
+/* eslint-disable prefer-destructuring,no-underscore-dangle,react/jsx-indent */
 import React from 'react'
-import { connect } from 'react-redux'
-import { func, object, string } from 'prop-types'
+import { object, string } from 'prop-types'
 import { Card, Feed } from 'semantic-ui-react'
-import { find } from '../../../../redux/people/action'
 import initialsFromUsername from '../../../../utils/initialsFromUsername'
+import connector from '../connector'
 
 const styles = {
   root: {
@@ -25,10 +24,11 @@ const styles = {
   },
 }
 
-class Persone extends React.Component {
+class Person extends React.Component {
   handleSelectPerson = (id) => {
-    const { dispatch } = this.props
-    dispatch(find(id))
+    const { actions } = this.props
+    actions.people.find(id)
+    actions.auth.closeAuth()
   }
 
   render() {
@@ -50,7 +50,7 @@ class Persone extends React.Component {
                     `${pathBack}${person.avatar[0]}` : person.avatar[0]}
                 />
                 :
-                    <Feed.Label style={styles.name}>{initialsFromUsername(name)}</Feed.Label>
+                <Feed.Label style={styles.name}>{initialsFromUsername(name)}</Feed.Label>
               }
               <Feed.Content>
                 <Feed.Summary>
@@ -65,14 +65,14 @@ class Persone extends React.Component {
   }
 }
 
-Persone.propTypes = {
-  dispatch: func.isRequired,
+Person.propTypes = {
+  actions: object.isRequired,
   person: object.isRequired,
   currentPeopleId: string,
 }
 
-Persone.defaultProps = {
+Person.defaultProps = {
   currentPeopleId: null,
 }
 
-export default connect()(Persone)
+export default connector(Person)

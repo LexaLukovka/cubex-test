@@ -1,9 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react'
-import { connect } from 'react-redux'
-import { func, object } from 'prop-types'
-import { Card, Icon } from 'semantic-ui-react'
-import { closeCurrent } from '../../../../redux/people/action'
+import { object } from 'prop-types'
+import { Card, Icon, Image } from 'semantic-ui-react'
 import Carousel from '../../../Carousel'
+import DeleteIcon from 'mdi-react/DeleteIcon'
+import connector from '../connector'
 
 const styles = {
   root: {
@@ -12,32 +13,56 @@ const styles = {
     maxWidth: 450,
     marginTop: 10,
   },
+  flex: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   image: {
-    height: '100%',
+    margin: 0,
     width: '100%',
+    background: 'inherit',
   },
   icon: {
     position: 'absolute',
     right: 5,
     top: 8,
   },
+  delete: {
+    color: '#ff0033',
+  },
 }
 
 class Details extends React.Component {
   handleClose = () => {
-    const { dispatch } = this.props
-    dispatch(closeCurrent())
+    const { actions } = this.props
+    actions.people.closeCurrent()
+  }
+
+  handleDelete = (id) => {
+    const { actions } = this.props
+    actions.people.deletePerson(id)
+    actions.people.closeCurrent()
   }
 
   render() {
-    const { currentPeople } = this.props
+    const { user, currentPeople } = this.props
+    const pathBack = 'http://localhost:3333/uploads/user.png'
 
     return (
       <Card style={styles.root}>
-        {currentPeople.avatar && <Carousel pictures={currentPeople.avatar} />}
+        {currentPeople.avatar ?
+          <Carousel pictures={currentPeople.avatar} />
+          :
+          <Image src={pathBack} style={styles.image} />
+        }
         <Icon name="close" size="large" style={styles.icon} onClick={this.handleClose} />
         <Card.Content>
-          <Card.Header>{`${currentPeople.firstName} ${currentPeople.lastName}`}</Card.Header>
+          <Card.Header>
+            <div style={styles.flex}>
+              {`${currentPeople.firstName} ${currentPeople.lastName}`}
+              {user && <DeleteIcon style={styles.delete} onClick={() => this.handleDelete(currentPeople._id)} />}
+            </div>
+          </Card.Header>
           <Card.Meta>{currentPeople.phone}</Card.Meta>
           <Card.Meta>{currentPeople.email}</Card.Meta>
         </Card.Content>
@@ -51,8 +76,13 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
-  dispatch: func.isRequired,
+  actions: object.isRequired,
+  user: object,
   currentPeople: object.isRequired,
 }
 
-export default connect()(Details)
+Details.defaultProps = {
+  user: null,
+}
+
+export default connector(Details)

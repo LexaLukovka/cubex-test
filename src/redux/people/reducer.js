@@ -11,6 +11,9 @@ import {
   PEOPLE_FIND_FULFILLED,
   PEOPLE_FIND_REJECTED,
   SEARCH,
+  DELETE_PERSON_FULFILLED,
+  DELETE_PERSON_PENDING,
+  DELETE_PERSON_REJECTED,
 } from './action'
 
 const initialState = {
@@ -27,6 +30,7 @@ const peopleReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_PEOPLE_PENDING:
     case CREATE_PERSON_PENDING:
+    case DELETE_PERSON_PENDING:
       return {
         ...state,
         loading: true,
@@ -35,6 +39,7 @@ const peopleReducer = (state = initialState, { type, payload }) => {
     case LOAD_PEOPLE_REJECTED:
     case PEOPLE_FIND_REJECTED:
     case CREATE_PERSON_REJECTED:
+    case DELETE_PERSON_REJECTED:
       return {
         ...state,
         loading: false,
@@ -50,6 +55,7 @@ const peopleReducer = (state = initialState, { type, payload }) => {
       }
 
     case CREATE_PERSON_FULFILLED:
+    case DELETE_PERSON_FULFILLED:
       return {
         ...state,
         loading: false,

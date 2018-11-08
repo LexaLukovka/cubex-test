@@ -14,6 +14,12 @@ export const CREATE_PERSON_PENDING = 'CREATE_PERSON_PENDING'
 export const CREATE_PERSON_REJECTED = 'CREATE_PERSON_REJECTED'
 export const CREATE_PERSON_FULFILLED = 'CREATE_PERSON_FULFILLED'
 
+
+export const DELETE_PERSON = 'DELETE_PERSON'
+export const DELETE_PERSON_PENDING = 'DELETE_PERSON_PENDING'
+export const DELETE_PERSON_REJECTED = 'DELETE_PERSON_REJECTED'
+export const DELETE_PERSON_FULFILLED = 'DELETE_PERSON_FULFILLED'
+
 export const SEARCH = 'SEARCH'
 export const CLOSE_CURRENT = 'CLOSE_CURRENT'
 export const ADD_PICTURE = 'ADD_PICTURE'
@@ -22,6 +28,20 @@ export const load = () => ({
   type: LOAD_PEOPLE,
   payload: People.all(),
 })
+
+export const create = (form) => ({
+  type: CREATE_PERSON,
+  payload: People.create(form),
+})
+
+export const deletePerson = (id) => async dispatch => {
+  await dispatch({
+    type: DELETE_PERSON,
+    payload: People.delete(id),
+  })
+
+  dispatch(load())
+}
 
 export const search = (value) => ({
   type: SEARCH,
@@ -33,15 +53,9 @@ export const find = (id) => ({
   payload: People.find(id),
 })
 
-export const create = (form) => ({
-  type: CREATE_PERSON,
-  payload: People.create(form),
-})
-
 export const closeCurrent = () => ({
   type: CLOSE_CURRENT,
 })
-
 
 export const addPictures = ({ ...picture }) => ({
   type: ADD_PICTURE,
