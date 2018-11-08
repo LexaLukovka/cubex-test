@@ -30,6 +30,10 @@ const styles = {
 }
 
 class CreateScene extends React.Component {
+  componentWillMount() {
+    document.title = 'Создание'
+  }
+
   componentDidMount() {
     const { actions, auth, history } = this.props
     if (!auth.user) history.push('/auth/login')

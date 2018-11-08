@@ -5,6 +5,10 @@ import Loading from '../Loading'
 import connector from './connector'
 
 class IndexScene extends React.Component {
+  componentWillMount() {
+    document.title = 'Cubex'
+  }
+
   componentDidMount() {
     const { actions } = this.props
     actions.people.load()
