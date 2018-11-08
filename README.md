@@ -22,6 +22,9 @@ Go to *http://localhost:3000/*
 
 Go to *F12 => Application => Clear storage => Clear site data*
 
+Then update *=> F5*
+
+
 
 ##
 If you not authorization you can't create a new person

@@ -31,8 +31,15 @@ const styles = {
 
 class CreateScene extends React.Component {
   componentDidMount() {
-    const { auth, history } = this.props
+    const { actions, auth, history } = this.props
     if (!auth.user) history.push('/auth/login')
+
+    actions.location.index('/create')
+  }
+
+  componentWillUnmount() {
+    const { actions } = this.props
+    actions.location.index('/')
   }
 
   render() {
@@ -52,6 +59,7 @@ class CreateScene extends React.Component {
 CreateScene.propTypes = {
   auth: object.isRequired,
   history: object.isRequired,
+  actions: object.isRequired,
 }
 
 export default connector(withRouter(CreateScene))
