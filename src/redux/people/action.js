@@ -16,6 +16,7 @@ export const CREATE_PERSON_FULFILLED = 'CREATE_PERSON_FULFILLED'
 
 export const SEARCH = 'SEARCH'
 export const CLOSE_CURRENT = 'CLOSE_CURRENT'
+export const ADD_PICTURE = 'ADD_PICTURE'
 
 export const load = () => ({
   type: LOAD_PEOPLE,
@@ -39,4 +40,10 @@ export const create = (form) => ({
 
 export const closeCurrent = () => ({
   type: CLOSE_CURRENT,
+})
+
+
+export const addPictures = ({ ...picture }) => ({
+  type: ADD_PICTURE,
+  payload: picture,
 })

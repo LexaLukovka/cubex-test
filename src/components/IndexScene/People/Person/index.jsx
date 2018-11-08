@@ -34,6 +34,7 @@ class Persone extends React.Component {
   render() {
     const { person, currentPeopleId } = this.props
     const name = `${person.firstName} ${person.lastName}`
+    const pathBack = 'http://localhost:3333'
 
     return (
       <Card
@@ -44,9 +45,12 @@ class Persone extends React.Component {
           <Feed>
             <Feed.Event>
               {person.avatar ?
-                <Feed.Label image={person.avatar} />
+                <Feed.Label
+                  image={!person.avatar[0].indexOf('/uploads') ?
+                    `${pathBack}${person.avatar[0]}` : person.avatar[0]}
+                />
                 :
-                <Feed.Label style={styles.name}>{initialsFromUsername(name)}</Feed.Label>
+                    <Feed.Label style={styles.name}>{initialsFromUsername(name)}</Feed.Label>
               }
               <Feed.Content>
                 <Feed.Summary>

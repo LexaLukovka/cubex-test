@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Button, CardContent, Grid } from 'semantic-ui-react'
 
+import Picture from './Picture'
+
 import FormikText from './formik/FormikText'
 import FormikPhone from './formik/FormikPhone'
 import formik from './formik'
@@ -42,6 +44,9 @@ const CreateForm = () =>
         component={FormikText}
         placeholder="email@example.com"
       />
+
+      <Picture />
+
       <Field
         label="Номер телефона"
         name="phone"

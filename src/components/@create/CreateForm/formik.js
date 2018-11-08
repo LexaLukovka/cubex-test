@@ -1,5 +1,6 @@
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
+import isEmpty from 'lodash/isEmpty'
 import transformValidationApi from '../../../utils/transformValidationApi'
 
 const formik = withFormik({
@@ -24,9 +25,15 @@ const formik = withFormik({
     company: '',
   }),
 
-  handleSubmit: (form, { props: { actions, auth, history }, setErrors, setSubmitting }) => {
+  handleSubmit: (form, { props: { actions, auth, history, createForm }, setErrors, setSubmitting }) => {
+
+    const person = {
+      ...form,
+      avatar: isEmpty(!createForm) && createForm.pictures,
+    }
+
     if (auth.user) {
-      actions.people.create(form)
+      actions.people.create(person)
         .then(() => {
           setSubmitting(false)
           history.push('/')
