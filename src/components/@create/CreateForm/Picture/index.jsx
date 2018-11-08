@@ -23,6 +23,7 @@ class Picture extends React.Component {
 
     return (
       <div style={styles.image}>
+        <h4>Добавить фото</h4>
         <PictureUpload
           name="pictures"
           pictures={form.pictures || []}
