@@ -4,6 +4,7 @@ import { object, string } from 'prop-types'
 import { Card, Feed } from 'semantic-ui-react'
 import initialsFromUsername from '../../../../utils/initialsFromUsername'
 import connector from '../connector'
+import { isEmpty } from 'lodash'
 
 const styles = {
   root: {
@@ -44,7 +45,7 @@ class Person extends React.Component {
         <Card.Content>
           <Feed>
             <Feed.Event>
-              {person.avatar ?
+              {!isEmpty(person.avatar) ?
                 <Feed.Label
                   image={!person.avatar[0].indexOf('/uploads') ?
                     `${pathBack}${person.avatar[0]}` : person.avatar[0]}
