@@ -10,6 +10,7 @@ const styles = {
   root: {
     display: 'flex',
     padding: 15,
+    justifyContent: 'center',
   },
   menu: {
     height: 38,
@@ -23,7 +24,6 @@ const styles = {
   },
   flex: {
     display: 'flex',
-    justifyContent: 'space-around',
   },
   button: {
     height: 38,
