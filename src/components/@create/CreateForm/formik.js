@@ -36,6 +36,7 @@ const formik = withFormik({
       actions.people.create(person)
         .then(() => {
           setSubmitting(false)
+          actions.people.addPictures({ pictures: [] })
           history.push('/')
         })
         .catch(errors => {
