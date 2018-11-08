@@ -1,5 +1,6 @@
 /* eslint-disable no-return-assign,no-underscore-dangle,no-nested-ternary */
 import {
+  ADD_PICTURE,
   CLOSE_CURRENT,
   CREATE_PERSON_FULFILLED,
   CREATE_PERSON_PENDING,
@@ -19,6 +20,7 @@ const initialState = {
   people: [],
   filterPeople: [],
   currentPeople: null,
+  form: {},
 }
 
 const peopleReducer = (state = initialState, { type, payload }) => {
@@ -84,6 +86,12 @@ const peopleReducer = (state = initialState, { type, payload }) => {
         filterPeople: resultSearch,
       }
     }
+
+    case ADD_PICTURE:
+      return {
+        ...state,
+        form: { ...state.form, ...payload },
+      }
 
     default:
       return state

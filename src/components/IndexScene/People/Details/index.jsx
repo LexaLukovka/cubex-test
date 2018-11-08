@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { func, object } from 'prop-types'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 import { closeCurrent } from '../../../../redux/people/action'
+import Carousel from '../../../Carousel'
 
 const styles = {
   root: {
@@ -30,9 +31,10 @@ class Details extends React.Component {
 
   render() {
     const { currentPeople } = this.props
+
     return (
       <Card style={styles.root}>
-        {currentPeople.avatar && <Image src={currentPeople.avatar} style={styles.image} />}
+        {currentPeople.avatar && <Carousel pictures={currentPeople.avatar} />}
         <Icon name="close" size="large" style={styles.icon} onClick={this.handleClose} />
         <Card.Content>
           <Card.Header>{`${currentPeople.firstName} ${currentPeople.lastName}`}</Card.Header>
