@@ -28,7 +28,7 @@ const People = ({ auth, people, currentPeople }) =>
       </div>
       <Grid centered style={styles.detail}>
         <Grid.Column mobile={16} tablet={8} computer={5}>
-          {auth.isOpen && <MyDetails user={auth.user} />}
+          {auth.user && (auth.isOpen && <MyDetails user={auth.user} />)}
           {currentPeople && <Details user={auth.user} currentPeople={currentPeople} />}
         </Grid.Column>
       </Grid>
