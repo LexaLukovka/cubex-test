@@ -1,13 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 import {
+  CLOSE_AUTH,
+
   LOGIN_USER_FULFILLED,
   LOGIN_USER_PENDING,
   LOGIN_USER_REJECTED,
 
-  REGISTER_USER_PENDING,
-  REGISTER_USER_FULFILLED,
-  REGISTER_USER_REJECTED,
-
   LOGOUT_USER,
+  OPEN_AUTH,
+
+  REGISTER_USER_FULFILLED,
+  REGISTER_USER_PENDING,
+  REGISTER_USER_REJECTED,
 } from './action'
 
 const initialState = {
@@ -15,6 +19,7 @@ const initialState = {
   errors: [],
   error: false,
   loading: false,
+  isOpen: false,
 }
 
 const authReducer = (state = initialState, { type, payload }) => {
@@ -46,6 +51,20 @@ const authReducer = (state = initialState, { type, payload }) => {
 
     case LOGOUT_USER:
       return { ...state, user: null }
+
+    case OPEN_AUTH: {
+      const { user, isOpen } = state
+      return {
+        ...state,
+        isOpen: isOpen ? (user._id !== payload) : true,
+      }
+    }
+
+    case CLOSE_AUTH:
+      return {
+        ...state,
+        isOpen: false,
+      }
 
     default:
       return state

@@ -28,7 +28,7 @@ code {
 }
 
 .search {
-    width: calc(100% - 350px);
+    width: calc(100% - 380px);
 }
 
 .person, .personMobile {
@@ -49,6 +49,9 @@ code {
 
 .person::-webkit-scrollbar-thumb, .personMobile::-webkit-scrollbar-thumb {
     border-radius: 0;
+}
+.slick-track {
+    margin: 0;
 }
 
 @media only screen and (max-width: 535px) {

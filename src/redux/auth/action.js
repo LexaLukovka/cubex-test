@@ -12,6 +12,9 @@ export const LOGIN_USER_REJECTED = 'LOGIN_USER_REJECTED'
 
 export const LOGOUT_USER = 'LOGIN_USER'
 
+export const OPEN_AUTH = 'OPEN_AUTH'
+export const CLOSE_AUTH = 'CLOSE_AUTH'
+
 export const register = (form) => ({
   type: REGISTER_USER,
   payload: Auth.register(form),
@@ -28,3 +31,12 @@ export const logout = () => dispatch => {
   })
   localStorage.setItem('user', JSON.stringify(null))
 }
+
+export const openAuth = (id) => ({
+  type: OPEN_AUTH,
+  payload: id,
+})
+
+export const closeAuth = () => ({
+  type: CLOSE_AUTH,
+})

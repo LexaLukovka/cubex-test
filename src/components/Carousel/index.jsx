@@ -7,10 +7,13 @@ import 'slick-carousel/slick/slick-theme.css'
 import { Image } from 'semantic-ui-react'
 
 const styles = {
-  root: {},
+  root: {
+    margin: 0,
+  },
   picture: {
     width: '100%',
     borderRadius: '3px',
+    margin: 0,
   },
 }
 
